@@ -1,0 +1,9 @@
+<div *ngIf="selectedCourse">
+  <h2>{{selectedCourse.name | uppercase}}</h2>
+  <div><span>ID: </span>{{selectedCourse.id}}</div>
+  <div>
+    <label>Name:
+      <input [(ngModel)]="selectedCourse.name" placeholder="Enter name">
+    </label>
+  </div>
+</div>

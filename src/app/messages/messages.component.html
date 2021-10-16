@@ -1,0 +1,8 @@
+<h1>Messages</h1>
+<ul class="course">
+  <li *ngFor="let message of MessageService.messages">
+    <span class="jasmine-description">{{message}}</span>
+  </li>
+</ul>
+
+<button (click)="MessageService.clear()">Clear</button>

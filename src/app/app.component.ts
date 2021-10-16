@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  get sample(): string {
+    return this._sample;
+  }
   title = 'BlueCrest';
+  private _sample: string  = "Hello there";
 }
