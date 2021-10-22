@@ -1,7 +1,7 @@
 <div class="container">
-  <h4 *ngIf="pnlTotal() < 0" class="col-12 alert-danger">Pnl By Strategy - Total Pnl: ({{getAbsValue(pnlTotal()) | currency}})</h4>
-  <h4 *ngIf="pnlTotal() >= 0" class="alert-danger">Pnl By Strategy - Total Pnl: {{pnlTotal() | currency}})</h4>
-  <input id="chkDetails" type="checkbox"  (change)="onCheckBoxChanged('ah')"><label>&nbsp; Show Details</label>
+  <h4 *ngIf="pnlTotal() < 0" class="col-12 alert-danger">Pnl By Strategy - Total Pnl: ({{getAbsValue(pnlTotal()) | number}})</h4>
+  <h4 *ngIf="pnlTotal() >= 0" class="alert-danger">Pnl By Strategy - Total Pnl: {{pnlTotal() | number}})</h4>
+  <input id="chkDetails" type="checkbox"  (change)="onCheckBoxChanged('ah')"><label>&nbsp; Show Pnl Detail Breakdown</label>
   <div class ="row align-content-center">
     <table class="table-striped col-sm-md" *ngIf="checked.length == 0">
       <thead>

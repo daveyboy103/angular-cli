@@ -9,10 +9,12 @@ import {catchError, map} from 'rxjs/operators';
 })
 export class DataServiceService {
 
-  url ="https://localhost:5001/api/Query/query/all/enumerable";
-  constructor(private http: HttpClient) { }
+  url = "https://localhost:5001/api/Query/query/all/enumerable";
 
-  getData() : Observable<DataList[]>{
+  constructor(private http: HttpClient) {
+  }
+
+  getData(): Observable<DataList[]> {
     return this.http.get(this.url).pipe(
       map(this.extractData),
       catchError(this.handleErrorObservable)
@@ -28,10 +30,12 @@ export class DataServiceService {
   private extractData(res: any) {
     return res;
   }
+
   private handleErrorObservable(error: any) {
     console.error(error.message || error);
     return throwError(error);
   }
+
   private handleErrorPromise(error: Response | any) {
     console.error(error.message || error);
     return Promise.reject(error.message || error);
