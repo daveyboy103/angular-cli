@@ -1,0 +1,51 @@
+<div class="container">
+  <h4 *ngIf="pnlTotal() < 0" class="col-12 alert-danger">Pnl By Strategy - Total Pnl: ({{getAbsValue(pnlTotal()) | currency}})</h4>
+  <h4 *ngIf="pnlTotal() >= 0" class="alert-danger">Pnl By Strategy - Total Pnl: {{pnlTotal() | currency}})</h4>
+  <input id="chkDetails" type="checkbox"  (change)="onCheckBoxChanged('ah')"><label>&nbsp; Show Details</label>
+  <div class ="row align-content-center">
+    <table class="table-striped col-sm-md" *ngIf="checked.length == 0">
+      <thead>
+        <tr>
+          <th>Fund</th>
+          <th>Desk</th>
+          <th>Strategy</th>
+          <th>Key</th>
+          <th>Pnl</th>
+        </tr>
+      </thead>
+        <tbody class="col-sm-12" *ngFor="let d of observableData | async as list">
+          <tr *ngIf="d.key === 'pnl'">
+              <td class="align-text-top p-1 m-1 col-sm-1"><b>{{d.fund}}</b></td>
+              <td class="align-text-top p-1 m-1 col-sm-2">{{d.desk}}</td>
+              <td class="align-text-top p-1 m-1 col-sm-2">{{d.strategy}}</td>
+              <td class="align-text-top p-1 m-1 col-sm-2">{{d.key}}</td>
+              <td *ngIf="d.value < 0" class="align-text-top alert-danger col-sm-5" style="text-align: right">({{getAbsValue(d.value) | currency }})</td>
+              <td *ngIf="d.value >= 0" class="align-text-top alert-success col-sm-5" style="text-align: right">{{d.value | currency}}</td>
+          </tr>
+        </tbody>
+    </table>
+    <table class="table-striped col-sm-md" *ngIf="checked.length > 0">
+      <thead>
+        <tr>
+          <th>Fund</th>
+          <th>Desk</th>
+          <th>Strategy</th>
+          <th>Key</th>
+          <th>Pnl Detail</th>
+        </tr>
+      </thead>
+        <tbody class="col-sm-12" *ngFor="let d of observableData | async as list">
+          <tr *ngIf="d.key === 'pnl'"><td colspan="5"><hr/></td></tr>
+          <tr *ngIf="isQualifyingDetailKey(d.key)">
+              <td class="align-text-top p-1 m-1 col-sm-1"><b>{{d.fund}}</b></td>
+              <td class="align-text-top p-1 m-1 col-sm-2">{{d.desk}}</td>
+              <td class="align-text-top p-1 m-1 col-sm-2">{{d.strategy}}</td>
+              <td *ngIf="d.key == 'pnl'" class="align-text-top p-1 m-1col-sm-2"><b>{{d.key}}</b></td>
+              <td *ngIf="d.key != 'pnl'" class="align-text-top p-1 m-1col-sm-2">{{d.key}}</td>
+              <td *ngIf="d.value < 0" class="align-text-top alert-danger col-sm-5" style="text-align: right">({{getAbsValue(d.value) | currency  }})</td>
+              <td *ngIf="d.value >= 0" class="align-text-top alert-success col-sm-5" style="text-align: right">{{d.value | currency}}</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
