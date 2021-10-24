@@ -32,7 +32,7 @@ export class PnlDataDisplayComponent implements OnInit {
   isQualifyingDetailKey(key: string): boolean {
     if (key == "pnl")
       return true;
-    return key.startsWith("pnl.") && this.containsTwoDots(key);
+    return key.startsWith("pnl.") && this.containsPnlInformation(key);
 
   }
 
@@ -49,8 +49,7 @@ export class PnlDataDisplayComponent implements OnInit {
     return Math.abs(value);
   }
 
-  private containsTwoDots(key: string): boolean {
-
+  private containsPnlInformation(key: string): boolean {
     if (key.startsWith('pnl.comp.rate.')) return false;
     if (key.startsWith('pnl.comp.fx.')) return false;
     if (key.startsWith('pnl.comp.vol.')) return false;
